@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackerWeb", "Expens
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackerUnitTest", "ExpenseTrackerUnitTest\ExpenseTrackerUnitTest.csproj", "{509D4480-BBD1-4A61-A3BB-05C295987C8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTrackerLib", "ExpenseTrackerLib\ExpenseTrackerLib.csproj", "{19AD7D9B-A7D3-4322-B95D-7CEC76F699F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{509D4480-BBD1-4A61-A3BB-05C295987C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509D4480-BBD1-4A61-A3BB-05C295987C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509D4480-BBD1-4A61-A3BB-05C295987C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19AD7D9B-A7D3-4322-B95D-7CEC76F699F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19AD7D9B-A7D3-4322-B95D-7CEC76F699F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19AD7D9B-A7D3-4322-B95D-7CEC76F699F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19AD7D9B-A7D3-4322-B95D-7CEC76F699F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
