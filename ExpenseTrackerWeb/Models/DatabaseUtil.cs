@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,8 +28,8 @@ namespace ExpenseTrackerWeb.Models
         {
             try
             {
-                db.ExpenseReport.Add(expense);
-                db.SaveChanges();
+                database.ExpenseReport.Add(expense);
+                database.SaveChanges();
             }
             catch
             {

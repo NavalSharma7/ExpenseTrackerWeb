@@ -32,10 +32,10 @@ namespace ExpenseTrackerUnitTest
         public void NoInputtest()
         {
             UnitTest1 test = new UnitTest1();
-            int Actual = null;
+            int Actual = 0;
 
             if (Actual != null) ;
-            Assert.IsNotNull(null,Actual);
+            Assert.IsNotNull(null,"");
 
         }
 
