@@ -7,24 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTrackerWeb.Models;
 
-namespace ExpenseTrackerWeb.Views.Expense
+namespace ExpenseTrackerWeb.Controllers
 {
-    public class ExpenseReportsController : Controller
+    public class ExpensesReportController : Controller
     {
-        private readonly ExpenseDbContext _context;
+        private readonly ExpenseContext _context;
 
-        public ExpenseReportsController(ExpenseDbContext context)
+        public ExpensesReportController(ExpenseContext context)
         {
             _context = context;
         }
 
-        // GET: ExpenseReports
+        // GET: ExpensesReport
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ExpenseReport.ToListAsync());
+            return View(await _context.ExpenseReports.ToListAsync());
         }
 
-        // GET: ExpenseReports/Details/5
+        // GET: ExpensesReport/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,7 +32,7 @@ namespace ExpenseTrackerWeb.Views.Expense
                 return NotFound();
             }
 
-            var expenseReport = await _context.ExpenseReport
+            var expenseReport = await _context.ExpenseReports
                 .FirstOrDefaultAsync(m => m.ItemId == id);
             if (expenseReport == null)
             {
@@ -42,13 +42,13 @@ namespace ExpenseTrackerWeb.Views.Expense
             return View(expenseReport);
         }
 
-        // GET: ExpenseReports/Create
+        // GET: ExpensesReport/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ExpenseReports/Create
+        // POST: ExpensesReport/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +64,7 @@ namespace ExpenseTrackerWeb.Views.Expense
             return View(expenseReport);
         }
 
-        // GET: ExpenseReports/Edit/5
+        // GET: ExpensesReport/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,7 +72,7 @@ namespace ExpenseTrackerWeb.Views.Expense
                 return NotFound();
             }
 
-            var expenseReport = await _context.ExpenseReport.FindAsync(id);
+            var expenseReport = await _context.ExpenseReports.FindAsync(id);
             if (expenseReport == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace ExpenseTrackerWeb.Views.Expense
             return View(expenseReport);
         }
 
-        // POST: ExpenseReports/Edit/5
+        // POST: ExpensesReport/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +115,7 @@ namespace ExpenseTrackerWeb.Views.Expense
             return View(expenseReport);
         }
 
-        // GET: ExpenseReports/Delete/5
+        // GET: ExpensesReport/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,7 +123,7 @@ namespace ExpenseTrackerWeb.Views.Expense
                 return NotFound();
             }
 
-            var expenseReport = await _context.ExpenseReport
+            var expenseReport = await _context.ExpenseReports
                 .FirstOrDefaultAsync(m => m.ItemId == id);
             if (expenseReport == null)
             {
@@ -133,20 +133,20 @@ namespace ExpenseTrackerWeb.Views.Expense
             return View(expenseReport);
         }
 
-        // POST: ExpenseReports/Delete/5
+        // POST: ExpensesReport/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var expenseReport = await _context.ExpenseReport.FindAsync(id);
-            _context.ExpenseReport.Remove(expenseReport);
+            var expenseReport = await _context.ExpenseReports.FindAsync(id);
+            _context.ExpenseReports.Remove(expenseReport);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ExpenseReportExists(int id)
         {
-            return _context.ExpenseReport.Any(e => e.ItemId == id);
+            return _context.ExpenseReports.Any(e => e.ItemId == id);
         }
     }
 }

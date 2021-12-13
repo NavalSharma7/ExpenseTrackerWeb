@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExpenseTrackerWeb.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,8 @@ namespace ExpenseTrackerWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ExpenseContext>(options => 
+            options.UseSqlServer("Server=(localdb)\\projectsv13;Database=ExpensesReportDB;Trusted_Connection=True;MultipleActiveResultSets=true; Integrated Security = true;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

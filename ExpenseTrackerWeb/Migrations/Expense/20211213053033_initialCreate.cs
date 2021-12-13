@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ExpenseTrackerWeb.Migrations
+namespace ExpenseTrackerWeb.Migrations.Expense
 {
-    public partial class ExpenseMigration : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ExpenseReport",
+                name: "ExpenseReports",
                 columns: table => new
                 {
                     ItemId = table.Column<int>(type: "int", nullable: false)
@@ -20,14 +20,14 @@ namespace ExpenseTrackerWeb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExpenseReport", x => x.ItemId);
+                    table.PrimaryKey("PK_ExpenseReports", x => x.ItemId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ExpenseReport");
+                name: "ExpenseReports");
         }
     }
 }

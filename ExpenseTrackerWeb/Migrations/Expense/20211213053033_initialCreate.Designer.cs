@@ -4,14 +4,16 @@ using ExpenseTrackerWeb.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ExpenseTrackerWeb.Migrations
+namespace ExpenseTrackerWeb.Migrations.Expense
 {
-    [DbContext(typeof(ExpenseDbContext))]
-    partial class ExpenseDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ExpenseContext))]
+    [Migration("20211213053033_initialCreate")]
+    partial class initialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,7 @@ namespace ExpenseTrackerWeb.Migrations
 
                     b.HasKey("ItemId");
 
-                    b.ToTable("ExpenseReport");
+                    b.ToTable("ExpenseReports");
                 });
 #pragma warning restore 612, 618
         }
