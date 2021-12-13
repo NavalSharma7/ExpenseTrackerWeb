@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,6 +13,9 @@ namespace ExpenseTrackerWeb.Models
 
         [Key]
         public int ItemId { get; set; }
+
+
+        [DisplayName("Expense")]
         [Required]
         public string ItemName { get; set; }
 
@@ -20,6 +24,8 @@ namespace ExpenseTrackerWeb.Models
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Amount { get; set; }
 
+
+        [DisplayName("Expense Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Required]
