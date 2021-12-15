@@ -57,22 +57,22 @@ namespace ExpenseTrackerIntegrationTest
 
             _driver.Navigate().GoToUrl("https://localhost:44321/ExpensesReport/Create");
 
-            var expense = _driver.FindElement(By.CssSelector(""));
+            var expense = _driver.FindElement(By.Id("ItemName"));
 
-            var amount = _driver.FindElement(By.CssSelector(""));
+            var amount = _driver.FindElement(By.Id("Amount"));
 
-            var date = _driver.FindElement(By.CssSelector(""));
+            var date = _driver.FindElement(By.Id("ExpenseDate"));
 
-            var category = _driver.FindElement(By.CssSelector(""));
+            var category = _driver.FindElement(By.Id("Category"));
 
-            var form = _driver.FindElement(By.CssSelector("form"));
+            var form = _driver.FindElement(By.Id("Create"));
 
             //start interacting eith theUI 
 
-            expense.SendKeys("");
-            amount.SendKeys("");
-            date.SendKeys("");
-            category.SendKeys("");
+            expense.SendKeys("beer");
+            amount.SendKeys("10");
+            date.SendKeys("04/06/2021");
+            category.SendKeys("drinks");
             form.Submit();
 
         }
