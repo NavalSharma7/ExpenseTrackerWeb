@@ -1,7 +1,10 @@
 
+using ExpenseTrackerWeb.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
@@ -30,8 +33,8 @@ namespace ExpenseTrackerIntegrationTest
 
         [TestMethod]
 
-        public void TestEmptyEntryIsInvalid() { 
-        
+        public void TestEmptyEntryIsInvalid() {
+           
         }
 
 
@@ -55,6 +58,10 @@ namespace ExpenseTrackerIntegrationTest
         public void TestValidExpenseEntryIsAdded()
         {
 
+            _driver.Navigate().GoToUrl("https://localhost:44321");
+            int count= _driver.FindElements(By.XPath("/html/body/div[1]/main/table")).Count;
+            // goto the create page
+
             _driver.Navigate().GoToUrl("https://localhost:44321/ExpensesReport/Create");
 
             var expense = _driver.FindElement(By.Id("ItemName"));
@@ -74,6 +81,26 @@ namespace ExpenseTrackerIntegrationTest
             date.SendKeys("04/06/2021");
             category.SendKeys("drinks");
             form.Submit();
+
+
+            
+            // find the list in the  expense report page
+
+            // _driver.Navigate().GoToUrl("https://localhost:44321/");
+
+            var tablwrows = _driver.FindElements(By.XPath("/html/body/div[1]/main/table"));
+
+            IWebElement webElement = tablwrows[0];
+
+            var rows = webElement.FindElements(By.XPath("/html/body/div[1]/main/table/tbody"));
+
+
+            int countNew = rows.Count;
+
+          
+           
+            Assert.AreNotEqual(count, countNew);
+            //  Assert.IsTrue()
 
         }
 
@@ -124,6 +151,14 @@ namespace ExpenseTrackerIntegrationTest
         }
 
 
+        [TestCleanup]
+
+        public void ShutDown()
+        {
+
+            _driver.Quit();
+              
+        }
         
     }
 }
