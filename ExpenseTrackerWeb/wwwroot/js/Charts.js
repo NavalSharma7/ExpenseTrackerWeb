@@ -7,9 +7,9 @@ $(document).ready(function () {
         type: "POST",
         url: '/ExpensesReport/ReportCount',
         data: JSON.stringify({}),
-        async:false,
-        contentType: "application/json:charset=utf-8",
-        dataType: "json",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (json) {
             var values = json.ReportCount;
 
@@ -84,5 +84,5 @@ $(document).ready(function () {
 
 
 
-})
+});
 

@@ -77,7 +77,7 @@ namespace ExpenseTrackerWeb.Controllers
         // method to get values for charts
 
 
-       
+       [HttpPost]
         public JsonResult ReportCount()
         {
             try
