@@ -155,4 +155,19 @@ namespace ExpenseTrackerWeb.Controllers
             return _context.ExpenseReports.Any(e => e.ItemId == id);
         }
     }
+
+    // method to get values for charts
+
+    public JsonResult ReportCount() {
+
+
+        try {
+        
+        
+        }
+        catch (Exception ex) {
+
+            throw ex;
+        }
+    }
 }

@@ -1,47 +1,18 @@
-﻿<html>
-<body>
-    @{
+﻿ @{
     ViewData["Title"] = "Add Expense";
     }
 
-    <h2>Your Expense Charts</h2>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-    <h4></h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="ItemName" class="control-label"></label>
-                    <input asp-for="ItemName" class="form-control" id="ItemName" />
-                    <span asp-validation-for="ItemName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Amount" class="control-label"></label>
-                    <input asp-for="Amount" class="form-control" id="Amount" />
-                    <span asp-validation-for="Amount" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ExpenseDate" class="control-label"></label>
-                    <input asp-for="ExpenseDate" class="form-control" id="ExpenseDate" />
-                    <span asp-validation-for="ExpenseDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Category" class="control-label"></label>
-                    <input asp-for="Category" class="form-control" id="Category" />
-                    <span asp-validation-for="Category" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" id="Create" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-
-</body>
-</html>
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        Pie charts are very popular for showing a compact overview of a
+        composition or comparison. While they can be harder to read than
+        column charts, they remain a popular choice for small datasets.
+    </p>
+</figure>
+<script src="~/js/Charts.js"></script>
