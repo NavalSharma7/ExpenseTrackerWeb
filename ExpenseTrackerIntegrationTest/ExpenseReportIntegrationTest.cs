@@ -59,7 +59,9 @@ namespace ExpenseTrackerIntegrationTest
         {
 
             _driver.Navigate().GoToUrl("https://localhost:44321");
-            int count= _driver.FindElements(By.XPath("/html/body/div[1]/main/table")).Count;
+
+
+            int count= _driver.FindElements(By.CssSelector("body > div > main > table > tbody > tr")).Count;
             // goto the create page
 
             _driver.Navigate().GoToUrl("https://localhost:44321/ExpensesReport/Create");
@@ -88,17 +90,17 @@ namespace ExpenseTrackerIntegrationTest
 
             // _driver.Navigate().GoToUrl("https://localhost:44321/");
 
-            var tablwrows = _driver.FindElements(By.XPath("/html/body/div[1]/main/table"));
+            var tablwrows = _driver.FindElements(By.CssSelector("body > div > main > table"));
 
             IWebElement webElement = tablwrows[0];
 
-            var rows = webElement.FindElements(By.XPath("/html/body/div[1]/main/table/tbody"));
+            var rows = webElement.FindElements(By.CssSelector("body > div > main > table > tbody > tr"));
 
 
             int countNew = rows.Count;
 
-          
-           
+
+
             Assert.AreNotEqual(count, countNew);
             //  Assert.IsTrue()
 

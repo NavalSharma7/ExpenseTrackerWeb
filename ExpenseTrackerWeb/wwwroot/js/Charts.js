@@ -1,16 +1,25 @@
-﻿
+﻿//const { Alert } = require("bootstrap");
+//const { error } = require("jquery");
+
 
 $(document).ready(function () {
 
     $.ajax({
 
         type: "POST",
-        url: '/ExpensesReport/ReportCount',
+        url: 'https://localhost:44321/ExpensesReport/ReportCount',
         data: JSON.stringify({}),
         async: false,
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        success: function (json) {
+        success: successfunc,
+            error: errorfunc
+    });
+
+    function successfunc(json) {
+        alert("success")
+
+      /*
             var values = json.ReportCount;
 
             var foodCount = parseInt(values[0]);
@@ -77,12 +86,12 @@ $(document).ready(function () {
                         y: 2.61
                     }]
                 }]
-            });
+            }); */
         }
 
-    })
-
-
+    function errorfunc() {
+        alert("error occured");
+    }
 
 });
 
