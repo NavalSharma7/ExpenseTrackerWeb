@@ -1,0 +1,1 @@
+﻿select count(itemID) as food , (select count(itemID) from ExpenseReports where Category = 'drinks') as drinks from ExpenseReports where Category = 'food';
