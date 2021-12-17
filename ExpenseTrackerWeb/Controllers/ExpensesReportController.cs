@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTrackerWeb.Models;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using Newtonsoft.Json;
+using System.Web.Helpers;
 
 namespace ExpenseTrackerWeb.Controllers
 {
@@ -68,6 +72,51 @@ namespace ExpenseTrackerWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(expenseReport);
+        }
+
+        // method to get values for charts
+
+
+       
+        public JsonResult ReportCount()
+        {
+            try
+            {
+
+                string[] ReportCount = new string[100];
+
+                SqlConnection con = new SqlConnection("Server=(localdb)\\projectsv13;Database=ExpensesReportDB;Trusted_Connection=True;MultipleActiveResultSets=true; Integrated Security = true;");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("select count(itemID) as food , (select count(itemID) from ExpenseReports where Category = 'drinks') as drinks from ExpenseReports where Category = 'food';", con);
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(table);
+                if (table.Rows.Count == 0)
+                {
+                    ReportCount[0] = "0";
+                    ReportCount[1] = "0";
+                    
+
+                }
+                else
+                {
+
+                    ReportCount[0] = table.Rows[0]["drinks"].ToString();
+                    ReportCount[1] = table.Rows[0]["food"].ToString();
+
+                  
+                }
+                return Json(new { ReportCount }, System.Web.Mvc.JsonRequestBehavior.AllowGet);
+            }
+
+
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+             
+            }
         }
 
         // GET: ExpensesReport/Edit/5
@@ -156,18 +205,5 @@ namespace ExpenseTrackerWeb.Controllers
         }
     }
 
-    // method to get values for charts
-
-    public JsonResult ReportCount() {
-
-
-        try {
-        
-        
-        }
-        catch (Exception ex) {
-
-            throw ex;
-        }
-    }
+   
 }
