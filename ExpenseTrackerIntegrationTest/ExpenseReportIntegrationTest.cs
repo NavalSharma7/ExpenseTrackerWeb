@@ -150,7 +150,7 @@ namespace ExpenseTrackerIntegrationTest
             IWebElement item = items[0];
 
             // count  same means the table has not been updated
-            string value = item.
+           // string value = item.
 
             Assert.AreEqual(item, "editedItem");
 
