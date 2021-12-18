@@ -1,8 +1,4 @@
-﻿//const { Alert } = require("bootstrap");
-//const { error } = require("jquery");
-
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     $.ajax({
 
@@ -12,7 +8,7 @@ $(document).ready(function () {
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
         success: successfunc,
-           
+        error: errorfunc
     });
 
     function successfunc(json) {
@@ -86,7 +82,7 @@ $(document).ready(function () {
         }
 
     function errorfunc() {
-        alert(data);
+        alert("error");
     }
 
 });

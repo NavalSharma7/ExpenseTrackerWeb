@@ -161,19 +161,27 @@ namespace ExpenseTrackerIntegrationTest
         [TestMethod]
         public void TestValidExpenseEntryisDeleted()
         {
+            _driver.Navigate().GoToUrl("https://localhost:44321");
+
+
+            int count = _driver.FindElements(By.CssSelector("body > div > main > table > tbody > tr")).Count;
+            // goto the create page
 
             _driver.Navigate().GoToUrl("https://localhost:44321/");
 
-            var expense = _driver.FindElement(By.CssSelector(""));
+            var delButton = _driver.FindElement(By.CssSelector("body > div > main > table > tbody > tr:nth-child(1) > td:nth-child(5) > a:nth-child(3)"));
 
-            var amount = _driver.FindElement(By.CssSelector(""));
+            delButton.Click();
 
-            var date = _driver.FindElement(By.CssSelector(""));
+            var tablwrows = _driver.FindElements(By.CssSelector("body > div > main > table"));
 
-            var category = _driver.FindElement(By.CssSelector(""));
+            IWebElement webElement = tablwrows[0];
 
-            var form = _driver.FindElement(By.CssSelector("form"));
+            var rows = webElement.FindElements(By.CssSelector("body > div > main > table > tbody > tr"));
 
+
+            int countNew = rows.Count;
+            Assert.AreNotEqual(count,countNew);
         }
 
         [TestMethod]
