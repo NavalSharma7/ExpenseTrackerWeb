@@ -99,10 +99,10 @@ namespace ExpenseTrackerIntegrationTest
 
             int countNew = rows.Count;
 
-
+            // count not same means the table has been updated
 
             Assert.AreNotEqual(count, countNew);
-            //  Assert.IsTrue()
+           
 
         }
 
@@ -111,25 +111,49 @@ namespace ExpenseTrackerIntegrationTest
         public void TestValidExpenseEntryCanBeEdited()
         {
 
-            _driver.Navigate().GoToUrl("https://localhost:44321/ExpensesReport/Create");
+            _driver.Navigate().GoToUrl("https://localhost:44321/ExpensesReport/Create/1");
 
-            var expense = _driver.FindElement(By.CssSelector(""));
+            var expense = _driver.FindElement(By.Id("ItemName"));
 
-            var amount = _driver.FindElement(By.CssSelector(""));
+            var amount = _driver.FindElement(By.Id("Amount"));
 
-            var date = _driver.FindElement(By.CssSelector(""));
+            var date = _driver.FindElement(By.Id("ExpenseDate"));
 
-            var category = _driver.FindElement(By.CssSelector(""));
+            var category = _driver.FindElement(By.Id("Category"));
 
-            var form = _driver.FindElement(By.CssSelector("form"));
+            var form = _driver.FindElement(By.Id("Create"));
 
             //start interacting eith theUI 
 
-            expense.SendKeys("");
-            amount.SendKeys("");
-            date.SendKeys("");
-            category.SendKeys("");
+            expense.SendKeys("editedItem");
+            amount.SendKeys("200");
+            date.SendKeys("21/2/2020");
+            category.SendKeys("food");
             form.Submit();
+
+
+            // find the list in the  expense report page
+
+            // _driver.Navigate().GoToUrl("https://localhost:44321/");
+
+            var tablwrows = _driver.FindElements(By.CssSelector("body > div > main > table"));
+
+            IWebElement webElement = tablwrows[0];
+
+            var rows = webElement.FindElements(By.CssSelector("body > div > main > table > tbody > tr"));
+
+
+            var rowItem = rows[0];
+
+           var items =  rowItem.FindElements(By.CssSelector("body > div > main > table > tbody > tr > td"));
+
+            IWebElement item = items[0];
+
+            // count  same means the table has not been updated
+            string value = item.
+
+            Assert.AreEqual(item, "editedItem");
+
 
         }
 
@@ -149,6 +173,57 @@ namespace ExpenseTrackerIntegrationTest
             var category = _driver.FindElement(By.CssSelector(""));
 
             var form = _driver.FindElement(By.CssSelector("form"));
+
+        }
+
+        [TestMethod]
+
+        public void TestInvalidExpenseEntryCannotBeAdded() {
+
+            _driver.Navigate().GoToUrl("https://localhost:44321");
+
+
+            int count = _driver.FindElements(By.CssSelector("body > div > main > table > tbody > tr")).Count;
+            // goto the create page
+
+            _driver.Navigate().GoToUrl("https://localhost:44321/ExpensesReport/Create");
+
+            var expense = _driver.FindElement(By.Id("ItemName"));
+
+            var amount = _driver.FindElement(By.Id("Amount"));
+
+            var date = _driver.FindElement(By.Id("ExpenseDate"));
+
+            var category = _driver.FindElement(By.Id("Category"));
+
+            var form = _driver.FindElement(By.Id("Create"));
+
+            //start interacting eith theUI 
+
+            expense.SendKeys("");
+            amount.SendKeys("");
+            date.SendKeys("");
+            category.SendKeys("");
+            form.Submit();
+
+
+
+            // find the list in the  expense report page
+
+            // _driver.Navigate().GoToUrl("https://localhost:44321/");
+
+            var tablwrows = _driver.FindElements(By.CssSelector("body > div > main > table"));
+
+            IWebElement webElement = tablwrows[0];
+
+            var rows = webElement.FindElements(By.CssSelector("body > div > main > table > tbody > tr"));
+
+
+            int countNew = rows.Count;
+
+            // count  same means the table has not been updated
+
+            Assert.AreEqual(count, countNew);
 
         }
 
